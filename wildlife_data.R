@@ -41,8 +41,9 @@ library(ggrepel)
 library(cAIC4)
 library(psych)
 
+## Save file in your directory first
 ## Data
-data <- read.csv("/Users/victoraguiardesouzapenha/Desktop/Finlad/Data/rodent.csv", header = T)
+data <- read.csv("./rodent.csv", header = T)
 colnames(data)
 
 ## Remove rows without lat and lon
@@ -109,7 +110,7 @@ which(is.na(data2$gut_f_5k_shan))
 ###############################################################################################################
 ###############################################################################################################
 ## Tree cover
-map <- raster("/Users/victoraguiardesouzapenha/Desktop/Finlad/Dissimilarity index/Dissimilarity_01_05_1km_uint32.tif")
+map <- raster("./Dissimilarity_01_05_1km_uint32.tif")
 
 ## Occurence data
 occ <- as.data.frame.matrix(data2[,c("Lon", "Lat")])
@@ -637,7 +638,7 @@ p5 <- ggplot(last_one, aes(x = mean, y = labeltext)) +
                   direction = "y", 
                   force = 8)
 
-jpeg("/Users/victoraguiardesouzapenha/Desktop/Mod1_alt.jpeg", width = 10, height = 7, units = 'in', res = 800) 
+jpeg("./Mod1_alt.jpeg", width = 10, height = 7, units = 'in', res = 800) 
 p
 dev.off()
 
@@ -649,7 +650,7 @@ p4 <- grid2grob(print(fourth))
 p5 <- grid2grob(print(fifth))
 p6 <- grid2grob(print(sixth))
 p_both <- wrap_elements(p1) / wrap_elements(p2) / wrap_elements(p3) | wrap_elements(p4) / wrap_elements(p5) 
-jpeg("Mod1.jpeg", width = 8, height = 14, units = 'in', res = 800) 
+jpeg("./Mod1.jpeg", width = 8, height = 14, units = 'in', res = 800) 
 p_both
 dev.off()
 
@@ -679,7 +680,7 @@ um <- ggplot(data3, aes(x=PUUV, y = log(HII))) + geom_boxplot() + theme_bw() + y
 dois <- ggplot(data3, aes(x=BM, y = HII)) + geom_boxplot() + theme_bw() + ylab(NULL)
 tres <- ggplot(data3, aes(x=BBSL, y = HII)) + geom_boxplot() + theme_bw() + ylab(NULL)
 
-jpeg("/Users/victoraguiardesouzapenha/Desktop/Mod2.jpeg", width = 9, height = 5, units = 'in', res = 800) 
+jpeg("./Mod2.jpeg", width = 9, height = 5, units = 'in', res = 800) 
 #ggarrange(um,dois,tres,ncol=3)
 ggarrange(plt,plt2,plt3, ncol = 3)
 dev.off()
